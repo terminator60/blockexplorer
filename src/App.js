@@ -65,7 +65,7 @@ function App() {
     const blockData = await alchemy.core.getBlock(`0x${Number(input).toString(16)}`);
     //console.log(blockData)
     setDivContent(<div>
-      <h3>Block #{searchValue ? searchValue : blockNumber}</h3>
+      <h3>Block #{blockData.number}</h3>
       <p>Block Height: {blockData.number}</p>
       <p>Hash: {blockData.hash}</p>
       <p>Parent Hash: {blockData.parentHash}</p>
