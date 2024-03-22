@@ -69,3 +69,45 @@
   .gas-container {
     background-color: #f0f0f0;
   }
+
+  td {
+    max-width: 20rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+    padding: 10px;
+  }
+
+  tr {
+    text-align: center;
+    padding: 20px;
+  }
+
+  tr:hover {
+    background-color: rgb(220, 214, 201);
+    font-display: bold;
+    font-weight: bold;
+  }
+
+  table {
+    background-color: rgb(231, 225, 225);
+    padding: 10px;
+    border-radius: 10px;
+    border-style: dashed;
+    border-color: black;
+  }
+
+  b:hover {
+    color: rgb(101, 101, 195);
+    text-decoration: underline;
+  }
+
+  #gasText {
+    text-shadow: #2980b9;
+  }
+
+  #gasText:hover {
+    text-decoration: none;
+    border: black;
+  }
