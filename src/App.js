@@ -41,7 +41,7 @@ function App() {
       getBlockNumber();
       getGasPrice();
       if (counter === 0) {
-        console.log(counter)
+        //console.log(counter)
         await getHomePageDetails(await alchemy.core.getBlockNumber());
       }
     }
@@ -81,25 +81,25 @@ function App() {
 
   const transactionClick = async (e) => {
     const trnxId = e.target.textContent;
-    console.log(trnxId);
+    //console.log(trnxId);
     const transactionData = await alchemy.core.getTransaction(trnxId);
     getTransactionData(transactionData);
   };
 
   const addressClick = async (e) => {
     const address = e.target.textContent;
-    console.log(address);
+    //console.log(address);
     getAddressData(address)
   };
 
   async function getHomePageDetails(latest_block) {
     setCounter(1);
-    console.log(counter)
+    //console.log(counter)
     const blocksArray = rangeArray(latest_block - 9, latest_block);
     const blockTrxData = await alchemy.core.getBlockWithTransactions(latest_block);
     const trxs = blockTrxData.transactions.slice(blockTrxData.transactions.length - 10);
-    console.log(blocksArray)
-    console.log(trxs)
+    //console.log(blocksArray)
+    //console.log(trxs)
     const options = { method: 'GET', headers: { 'x-cg-demo-api-key': process.env.REACT_APP_COINGECKO_API_KEY } };
     let priceData;
     await fetch('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&include_last_updated_at=true&precision=0', options)
@@ -190,12 +190,12 @@ function App() {
       //console.log("Getting Block Data")
       getBlockData(input)
     } else if (input.length === 66) {
-      console.log("Getting Transaction Data")
+      //console.log("Getting Transaction Data")
       const transactionData = await alchemy.core.getTransaction(input);
       if (transactionData) {
         getTransactionData(transactionData)
       } else {
-        console.log("Getting Block Data")
+        //console.log("Getting Block Data")
         getBlockData(input)
       }
 
@@ -218,8 +218,8 @@ function App() {
     const blockTimestamp = new Date(blockData.timestamp * 1000);
     const differenceMs = now.getTime() - blockTimestamp.getTime();
     const differenceDays = Math.floor(differenceMs / (1000 * 60 * 60 * 24));
-    console.log(blockData)
-    console.log(typeof (blockData))
+    //console.log(blockData)
+    //console.log(typeof (blockData))
     setDivContent(<div>
       <div className='result-header'>
         <img src={require('./images/blocks.png')} alt="block-icon" className="logo"></img>
@@ -318,7 +318,7 @@ function App() {
 
   async function getBlock(e) {
     const blockId = e.target.innerText;
-    console.log(blockId)
+    //console.log(blockId)
     await getBlockData(blockId ? blockId : blockNumber)
   }
 
