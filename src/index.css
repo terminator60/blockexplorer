@@ -1,28 +1,75 @@
   /* Body styles */
   body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    display: flex;
+    background-color: #a7b1c5;
     min-height: 100vh;
   }
 
-  .heading {
+  .data-container {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    height: 32px;
+  }
+
+  .recent-data-container-text {
+    display: block;
+  }
+
+  .recent-data-container {
+    align-items: center;
+    height: 90px;
+    display: flex;
+  }
+
+  .header {
     font-style: italic;
-    font-weight: 800;
     padding-left: 30px;
-    display: inline-block;
+    padding-right: 30px;
+    display: flex;
     justify-items: auto;
+  }
+
+  .main-logo {
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+  }
+
+  .logo {
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+  }
+
+  .sub-logo {
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+  }
+
+  .site-header {
+    width: 60%;
+    display: flex;
+    align-items: center;
+  }
+
+  .latest-data-container {
+    width: 40%;
+    text-align: right;
   }
 
   /* Search bar container */
   .search-container {
     position: relative;
     justify-content: center;
+    width: min-content;
+    padding-left: 25px;
   }
 
   /* Search input styles */
   .search-input {
-    width: 600px;
+    width: 800px;
     margin-left: 30px;
     padding: 10px;
     border: 1px solid #ccc;
@@ -53,8 +100,16 @@
     background-color: #2980b9;
   }
 
-  .Result {
+  .main-result {
     margin-left: 30px;
+    padding-left: 15px;
+    margin-top: 20px;
+    margin-right: 50px;
+  }
+
+  .result-header {
+    display: flex;
+    align-items: center;
   }
 
   .App {
@@ -62,15 +117,15 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: #f0f0f0;
+    background-color: #a7b1c5;
     padding: 20px;
   }
 
   .gas-container {
-    background-color: #f0f0f0;
+    background-color: #a7b1c5;
   }
 
-  td {
+  .transaction-table .td b {
     max-width: 20rem;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -79,23 +134,19 @@
     padding: 10px;
   }
 
-  tr {
+  .transaction-table .tr {
     text-align: center;
     padding: 20px;
   }
 
-  tr:hover {
+  .transaction-table .tr:hover {
     background-color: rgb(220, 214, 201);
     font-display: bold;
     font-weight: bold;
   }
 
-  table {
-    background-color: rgb(231, 225, 225);
-    padding: 10px;
-    border-radius: 10px;
-    border-style: dashed;
-    border-color: black;
+  .transaction-table {
+    max-width: 80%;
   }
 
   b:hover {
@@ -110,4 +161,106 @@
   #gasText:hover {
     text-decoration: none;
     border: black;
+  }
+
+  .result-body td {
+    padding: 8px;
+    padding-left: 10px;
+  }
+
+  table {
+    border-style: solid;
+    border-color: #a7b1c5;
+    border-radius: 10px;
+    background-color: rgb(213, 216, 227);
+    padding: 15px;
+    margin-left: 5px;
+    width: 100%;
+  }
+
+  .recent-blocks-data,
+  .recent-transactions-data,
+  .recent-additonal-data {
+    border-style: solid;
+    border-color: #a7b1c5;
+    border-radius: 15px;
+    background-color: rgb(213, 216, 227);
+    padding: 15px;
+    margin-left: 5px;
+  }
+
+  .recent-block,
+  .recent-transaction,
+  .recent-blocks-data-header,
+  .recent-transactions-data-header {
+    border-bottom-style: solid;
+    border-bottom-width: thin;
+    border-bottom-color: rgb(13, 4, 66);
+  }
+
+  .main-result p {
+    padding-left: 15px;
+    height: 15px;
+  }
+
+  .result-body .key {
+    width: 10%;
+  }
+
+  .recent-data {
+    display: flex;
+  }
+
+  .recent-block,
+  .recent-blocks-data-header,
+  .recent-transactions,
+  .recent-transactions-data-header {
+    display: flex;
+    align-items: center;
+  }
+
+  .recent-blocks-data {
+    width: 15%;
+  }
+
+  .recent-transaction-data {
+    width: 70%;
+  }
+
+  .recent-block,
+  .recent-transaction {
+    padding-left: 15px;
+    display: flex;
+    height: 72px;
+  }
+
+  .recent-transaction-head {
+    align-items: center;
+    display: flex;
+  }
+
+  .recent-transaction-data p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .recent-transaction-head p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .recent-transaction-value p {
+    white-space: nowrap;
+  }
+
+  .recent-transaction-value {
+    display: flex;
+    align-items: center;
+  }
+
+  .recent-transaction-head,
+  .recent-transaction-data {
+    max-width: 350px;
   }

@@ -1,7 +1,7 @@
 import { Utils } from 'alchemy-sdk';
 import React from 'react';
 
-const TableComponent = ({ data }) => {
+const TransactionTableComponent = ({ data }) => {
     const transactionClick = async (e) => {
         const trnxId = e.target.textContent;
         console.log(trnxId);
@@ -35,4 +35,4 @@ const TableComponent = ({ data }) => {
     );
 };
 
-export default TableComponent;
+export default TransactionTableComponent;

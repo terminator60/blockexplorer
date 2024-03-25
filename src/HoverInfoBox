@@ -1,0 +1,19 @@
+import React, { useState } from 'react';
+import './HoverInfoBox.css'; // Import CSS for styling
+
+const HoverInfoBox = ({ info }) => {
+    const [showInfo, setShowInfo] = useState(false);
+
+    return (
+        <div
+            className="hover-info-box"
+            onMouseEnter={() => setShowInfo(true)}
+            onMouseLeave={() => setShowInfo(false)}
+        >
+            Hover here for info
+            {showInfo && <div className="info-content">{info}</div>}
+        </div>
+    );
+};
+
+export default HoverInfoBox;
