@@ -57,9 +57,10 @@
   .latest-data-container {
     width: 40%;
     text-align: right;
+    padding-top: 10px;
+    padding-right: 15px;
   }
 
-  /* Search bar container */
   .search-container {
     position: relative;
     justify-content: center;
@@ -67,7 +68,6 @@
     padding-left: 25px;
   }
 
-  /* Search input styles */
   .search-input {
     width: 800px;
     margin-left: 30px;
@@ -83,7 +83,6 @@
     border-color: #3498db;
   }
 
-  /* Search button styles */
   .search-button {
     position: absolute;
     top: 0;
@@ -210,7 +209,8 @@
     align-items: center;
   }
 
-  .recent-blocks-data {
+  .recent-blocks-data,
+  .recent-additonal-data {
     width: 15%;
   }
 
