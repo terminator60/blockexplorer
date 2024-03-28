@@ -19,12 +19,61 @@ const settings = {
 const alchemy = new Alchemy(settings);
 
 function App() {
+  const mainDashbpard = (<div className="recent-data">
+    <div className='recent-blocks-data' >
+      <div className='recent-blocks-data-header'>
+        <img src={require('./images/blockchain.webp')} alt="block-icon" className="sub-logo"></img>
+        <h3>Recent Blocks</h3>
+      </div>
+    </div>
+    <div className='recent-transactions-data' style={{ width: '65%' }}>
+      <div className='recent-transactions-data-header'>
+        <img src={require('./images/file.webp')} alt="block-icon" className="sub-logo"></img>
+        <h3>Recent Transactions</h3>
+      </div>
+    </div>
+    <div className='recent-additonal-data' style={{ width: '15%' }}>
+      <div className='recent-data-container'>
+        <img src={require('./images/label.webp')} alt="gas-icon" className="main-logo"></img>
+        <div className='recent-data-container-text'>
+          <p>Eth Price</p>
+        </div>
+      </div>
+      <div className='recent-data-container'>
+        <img src={require('./images/pie-chart.webp')} alt="gas-icon" className="main-logo"></img>
+        <div className='recent-data-container-text'>
+          <p>Market Cap</p>
+        </div>
+      </div>
+      <div className='recent-data-container'>
+        <img src={require('./images/stocks.webp')} alt="gas-icon" className="main-logo"></img>
+        <div className='recent-data-container-text'>
+          <p>Volume (24 Hr)</p>
+        </div>
+      </div>
+      <div className='recent-data-container'>
+        <img src={require('./images/gas-logo.webp')} alt="gas-icon" className="main-logo"></img>
+        <div className='recent-data-container-text'>
+          <p>Gas</p>
+        </div>
+      </div>
+      <div className='recent-data-container'>
+        <img src={require('./images/blocks.webp')} alt="block-icon" className="main-logo"></img>
+        <div className='recent-data-container-text'>
+          <p>Latest Block</p>
+          <p></p>
+        </div>
+      </div>
+      <div className='recent-data-container'>
+      </div>
+    </div>
+  </div >)
   const [blockNumber, setBlockNumber] = useState(0);
   const [ethUsdValue, setEthUsdValue] = useState(0);
   const [gasPrice, setGasPrice] = useState(0);
   const [searchValue, setSearchValue] = useState();
   //const [blockId, setBlockId] = useState();
-  const [divContent, setDivContent] = useState();
+  const [divContent, setDivContent] = useState(mainDashbpard);
   const [trnxContent, setTrnxContent] = useState();
   const [counter, setCounter] = useState(0);
   const options = { method: 'GET', headers: { 'x-cg-demo-api-key': process.env.REACT_APP_COINGECKO_API_KEY } };
@@ -35,13 +84,9 @@ function App() {
       async function getBlockNumber() {
         setBlockNumber(await alchemy.core.getBlockNumber());
       }
-      async function getGasPrice() {
-        const gasData = await alchemy.core.getGasPrice();
-        setGasPrice(Number(Utils.formatUnits(gasData._hex, "gwei")).toFixed(0));
-      }
       async function getEthUsdPrice() {
         //let priceData;
-        await fetch('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&include_last_updated_at=true&precision=0', options)
+        await fetch('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd&include_market_cap=false&include_24hr_vol=false&include_24hr_change=false&include_last_updated_at=false&precision=0', options)
           .then(response => response.json())
           .then(response => {
             //console.log(response);
@@ -62,6 +107,13 @@ function App() {
     const interval = setInterval(getData, 2000);
     return () => clearInterval(interval);
   });
+
+  async function getGasPrice() {
+    const gasData = await alchemy.core.getGasPrice();
+    const gas = Number(toGwei(gasData._hex)).toFixed(0);
+    setGasPrice(gas);
+    return gas;
+  }
 
   const getGasColor = (number) => {
     if (number < 25) {
@@ -114,6 +166,10 @@ function App() {
     const trxs = blockTrxData.transactions.slice(blockTrxData.transactions.length - 10);
     //console.log(blocksArray)
     //console.log(trxs)
+    let gas = gasPrice;
+    if (!gas) {
+      gas = await getGasPrice();
+    }
     let priceData;
     await fetch('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&include_last_updated_at=true&precision=0', options)
       .then(response => response.json())
@@ -185,7 +241,7 @@ function App() {
           <img src={require('./images/gas-logo.webp')} alt="gas-icon" className="main-logo"></img>
           <div className='recent-data-container-text'>
             <p>Gas</p>
-            <p id='gasText' style={{ color: getGasColor(gasPrice) }}>{gasPrice} Gwei</p>
+            <p id='gasText' style={{ color: getGasColor(gas) }}>{gas} Gwei</p>
           </div>
         </div>
         <div className='recent-data-container'>
@@ -194,6 +250,8 @@ function App() {
             <p>Latest Block</p>
             <p>{latest_block}</p>
           </div>
+        </div>
+        <div className='recent-data-container'>
         </div>
       </div>
     </div >)
@@ -590,7 +648,6 @@ function App() {
       {trnxContent}
     </div>
     <div className='sub-result'>
-
     </div>
   </div >;
 }
