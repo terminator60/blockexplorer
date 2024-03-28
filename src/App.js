@@ -49,7 +49,7 @@ function App() {
             setEthUsdValue(response.ethereum.usd)
           })
           .catch(err => console.error(err));
-        console.log(ethUsdValue);
+        //console.log(ethUsdValue);
       }
       getBlockNumber();
       getGasPrice();
@@ -122,7 +122,7 @@ function App() {
         priceData = response;
       })
       .catch(err => console.error(err));
-    console.log(priceData.ethereum);
+    //console.log(priceData.ethereum);
     const priceChangeSymbol = priceData.ethereum.usd_24h_change > 0 ? '+' : '';
     setTrnxContent();
     setDivContent(<div className="recent-data">
@@ -349,7 +349,7 @@ function App() {
 
   async function getTransactionData(transactionData) {
     //const transactionData = await alchemy.core.getTransaction(input);
-    console.log(transactionData)
+    //console.log(transactionData)
     blockId = transactionData.blockNumber;
     const receipt = await alchemy.core.getTransactionReceipt(transactionData.hash)
     const gasLimit = parseInt(transactionData.gasLimit._hex, 16);
@@ -358,7 +358,7 @@ function App() {
     const gasPriceEth = toEther(transactionData.gasPrice._hex);
     const transValue = toEther(transactionData.value._hex);
     const transFee = gasPriceEth * gasUsed;
-    console.log(receipt);
+    //console.log(receipt);
     setDivContent(<div>
       <div className='result-header'>
         <h3>Transaction Details</h3>
@@ -442,9 +442,9 @@ function App() {
     let deployerData;
     //console.log(Balance)
     //console.log(isContract)   
-    console.log(tokensData)
-    console.log(transactionData)
-    console.log(transactionData.transfers.reverse)
+    //console.log(tokensData)
+    //console.log(transactionData)
+    //console.log(transactionData.transfers.reverse)
     if (isContract) {
       deployerData = await alchemy.core.findContractDeployer(input);
     }
@@ -487,7 +487,7 @@ function App() {
                   <td className='small-data'><img src={token.logo ? token.logo : require('./images/token.png')} alt="token-icon" className="sub-logo"></img></td>
                   <td className='small-data'>{token.name}</td>
                   <td className='small-data'>{token.symbol}</td>
-                  <td className='large-data'>{token.contractAddress}</td>
+                  <td className='large-data-clickable' onClick={addressClick}>{token.contractAddress}</td>
                   <td className='small-data'>{token.balance}</td>
                 </tr>
               ))}
@@ -552,7 +552,7 @@ function App() {
           {data.map((item) => (
             <tr key={item.uniqueId}>
               <td className='clickable' onClick={transactionClick}>{item.hash}</td>
-              <td className='small-data' onClick={getBlock}>{parseInt(item.blockNum, 16)}</td>
+              <td className='small-data-clickable' onClick={getBlock}>{parseInt(item.blockNum, 16)}</td>
               <td className='clickable' onClick={addressClick}>{item.from}</td>
               <td className='clickable' onClick={addressClick}>{item.to}</td>
               <td className='small-data'>{Number(item.value).toPrecision(5)} {item.asset}</td>

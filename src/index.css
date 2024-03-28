@@ -274,13 +274,15 @@
     padding: 10px;
   }
 
-  .small-data {
+  .small-data,
+  .small-data-clickable {
     width: 10%;
     text-align: center;
   }
 
   .clickable,
   .large-data-clickable,
+  .small-data-clickable,
   b {
     color: rgb(101, 101, 195);
     font-weight: normal;
@@ -289,6 +291,7 @@
   }
 
   .clickable:hover,
+  .small-data-clickable:hover,
   .large-data-clickable:hover {
     text-decoration: underline;
     cursor: pointer;
