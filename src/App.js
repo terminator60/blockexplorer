@@ -437,7 +437,7 @@ function App() {
     const transactionData = await alchemy.core.getAssetTransfers({
       fromBlock: "0x0",
       fromAddress: input,
-      category: ["external"], ///, "internal", "erc20", "erc721", "erc1155"
+      category: ["external"], //, "internal", "erc20", "erc721", "erc1155"
     });
     let deployerData;
     //console.log(Balance)
