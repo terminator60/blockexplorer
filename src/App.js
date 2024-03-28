@@ -128,25 +128,25 @@ function App() {
     setDivContent(<div className="recent-data">
       <div className='recent-blocks-data'>
         <div className='recent-blocks-data-header'>
-          <img src={require('./images/blockchain.png')} alt="block-icon" className="sub-logo"></img>
+          <img src={require('./images/blockchain.webp')} alt="block-icon" className="sub-logo"></img>
           <h3>Recent Blocks</h3>
         </div>
         {blocksArray.reverse().map((block) => (
           <div className='recent-block'>
-            <img src={require('./images/block.png')} alt="block-icon" className="sub-logo"></img>
+            <img src={require('./images/block.webp')} alt="block-icon" className="sub-logo"></img>
             <p className='clickable' onClick={getBlock}>{block}</p>
           </div>
         ))}
       </div>
       <div className='recent-transactions-data'>
         <div className='recent-transactions-data-header'>
-          <img src={require('./images/file.png')} alt="block-icon" className="sub-logo"></img>
+          <img src={require('./images/file.webp')} alt="block-icon" className="sub-logo"></img>
           <h3>Recent Transactions</h3>
         </div>
         {trxs.reverse().map((trx) => (
           <div className='recent-transaction'>
             <div className='recent-transaction-head'>
-              <img src={require('./images/list.png')} alt="transaction-icon" className="sub-logo"></img>
+              <img src={require('./images/list.webp')} alt="transaction-icon" className="sub-logo"></img>
               <p className='clickable' onClick={transactionClick}>{trx.hash}</p>
             </div>
             <div className='recent-transaction-data'>
@@ -161,35 +161,35 @@ function App() {
       </div>
       <div className='recent-additonal-data'>
         <div className='recent-data-container'>
-          <img src={require('./images/label.png')} alt="gas-icon" className="main-logo"></img>
+          <img src={require('./images/label.webp')} alt="gas-icon" className="main-logo"></img>
           <div className='recent-data-container-text'>
             <p>Eth Price</p>
             <p id='gasText'>${Number(priceData.ethereum.usd).toLocaleString()} ({priceChangeSymbol}{Number(priceData.ethereum.usd_24h_change).toPrecision(2)}%)</p>
           </div>
         </div>
         <div className='recent-data-container'>
-          <img src={require('./images/pie-chart.png')} alt="gas-icon" className="main-logo"></img>
+          <img src={require('./images/pie-chart.webp')} alt="gas-icon" className="main-logo"></img>
           <div className='recent-data-container-text'>
             <p>Market Cap</p>
             <p id='gasText'>${Number(Math.floor(priceData.ethereum.usd_market_cap)).toLocaleString()}</p>
           </div>
         </div>
         <div className='recent-data-container'>
-          <img src={require('./images/stocks.png')} alt="gas-icon" className="main-logo"></img>
+          <img src={require('./images/stocks.webp')} alt="gas-icon" className="main-logo"></img>
           <div className='recent-data-container-text'>
             <p>Volume (24 Hr)</p>
             <p id='gasText'>${Number(Math.floor(priceData.ethereum.usd_24h_vol)).toLocaleString()}</p>
           </div>
         </div>
         <div className='recent-data-container'>
-          <img src={require('./images/gas-logo.png')} alt="gas-icon" className="main-logo"></img>
+          <img src={require('./images/gas-logo.webp')} alt="gas-icon" className="main-logo"></img>
           <div className='recent-data-container-text'>
             <p>Gas</p>
             <p id='gasText' style={{ color: getGasColor(gasPrice) }}>{gasPrice} Gwei</p>
           </div>
         </div>
         <div className='recent-data-container'>
-          <img src={require('./images/blocks.png')} alt="block-icon" className="main-logo"></img>
+          <img src={require('./images/blocks.webp')} alt="block-icon" className="main-logo"></img>
           <div className='recent-data-container-text'>
             <p>Latest Block</p>
             <p>{latest_block}</p>
@@ -236,7 +236,7 @@ function App() {
     //console.log(typeof (blockData))
     setDivContent(<div>
       <div className='result-header'>
-        <img src={require('./images/blocks.png')} alt="block-icon" className="logo"></img>
+        <img src={require('./images/blocks.webp')} alt="block-icon" className="logo"></img>
         <h3>Block #{blockData.number}</h3>
       </div>
       <div className='result-body'>
@@ -437,7 +437,7 @@ function App() {
     const transactionData = await alchemy.core.getAssetTransfers({
       fromBlock: "0x0",
       fromAddress: input,
-      category: ["external"], ///, "internal", "erc20", "erc721", "erc1155"
+      category: ["external"], //, "internal", "erc20", "erc721", "erc1155"
     });
     let deployerData;
     //console.log(Balance)
@@ -484,7 +484,7 @@ function App() {
             <tbody id='tokens-table-body' hidden={true}>
               {tokensData.tokens.map((token, index) => (
                 <tr key={token.contractAddress}>
-                  <td className='small-data'><img src={token.logo ? token.logo : require('./images/token.png')} alt="token-icon" className="sub-logo"></img></td>
+                  <td className='small-data'><img src={token.logo ? token.logo : require('./images/token.webp')} alt="token-icon" className="sub-logo"></img></td>
                   <td className='small-data'>{token.name}</td>
                   <td className='small-data'>{token.symbol}</td>
                   <td className='large-data-clickable' onClick={addressClick}>{token.contractAddress}</td>
@@ -567,16 +567,16 @@ function App() {
   return <div>
     <div className="header">
       <div className='site-header'>
-        <img src={require('./images/eth-logo.png')} alt="gas-icon" className="main-logo"></img>
+        <img src={require('./images/eth-logo.webp')} alt="gas-icon" className="main-logo"></img>
         <h1 onClick={displayHome}>ETH Block Explorer</h1>
       </div>
       <div className='latest-data-container'>
         <div className='data-container'>
-          <img src={require('./images/gas-logo.png')} alt="gas-icon" className="logo"></img>
+          <img src={require('./images/gas-logo.webp')} alt="gas-icon" className="logo"></img>
           <p>Gas - <b id='gasText' style={{ color: getGasColor(gasPrice) }}>{gasPrice} Gwei</b></p>
         </div>
         <div className='data-container'>
-          <img src={require('./images/blocks.png')} alt="block-icon" className="logo"></img>
+          <img src={require('./images/blocks.webp')} alt="block-icon" className="logo"></img>
           <p>Latest Block - <b className='clickable' onClick={getBlock}>{blockNumber}</b></p>
         </div>
       </div>
