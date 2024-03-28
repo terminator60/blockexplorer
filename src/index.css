@@ -76,6 +76,7 @@
     border-radius: 20px;
     outline: none;
     transition: border-color 0.3s ease-in-out;
+    text-indent: 10px;
   }
 
   .search-input:focus {
@@ -100,7 +101,8 @@
     background-color: #2980b9;
   }
 
-  .main-result {
+  .main-result,
+  .sub-result {
     margin-left: 30px;
     padding-left: 15px;
     margin-top: 20px;
@@ -125,7 +127,7 @@
     background-color: #a7b1c5;
   }
 
-  .transaction-table .td b {
+  .transaction-table .td {
     max-width: 20rem;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -137,21 +139,6 @@
   .transaction-table .tr {
     text-align: center;
     padding: 20px;
-  }
-
-  .transaction-table .tr:hover {
-    background-color: rgb(220, 214, 201);
-    font-display: bold;
-    font-weight: bold;
-  }
-
-  .transaction-table {
-    max-width: 80%;
-  }
-
-  b:hover {
-    color: rgb(101, 101, 195);
-    text-decoration: underline;
   }
 
   #gasText {
@@ -175,7 +162,11 @@
     background-color: rgb(213, 216, 227);
     padding: 15px;
     margin-left: 5px;
+  }
+
+  .result-body table {
     width: 100%;
+    table-layout: fixed;
   }
 
   .recent-blocks-data,
@@ -204,7 +195,7 @@
   }
 
   .result-body .key {
-    width: 10%;
+    width: 20%;
   }
 
   .recent-data {
@@ -263,4 +254,52 @@
   .recent-transaction-head,
   .recent-transaction-data {
     max-width: 350px;
+  }
+
+  .sub-result {
+    width: 1300px;
+  }
+
+  .transaction-table,
+  .address-transaction-table {
+    table-layout: fixed;
+    width: 100%;
+  }
+
+  .transaction-table th,
+  td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 10px;
+  }
+
+  .small-data {
+    width: 10%;
+    text-align: center;
+  }
+
+  .clickable,
+  .large-data-clickable,
+  b {
+    color: rgb(101, 101, 195);
+    font-weight: normal;
+    white-space: nowrap;
+
+  }
+
+  .clickable:hover,
+  .large-data-clickable:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  b:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  .large-data {
+    width: max-content;
+    text-align: center;
   }
