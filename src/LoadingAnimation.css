@@ -1,0 +1,21 @@
+.loading-animation {
+    font-size: 18px;
+    font-weight: lighter;
+    color: #333;
+    animation: pulse 1s infinite;
+    /* Apply the 'pulse' animation */
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.3;
+    }
+}

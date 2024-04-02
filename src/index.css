@@ -12,6 +12,11 @@
     height: 32px;
   }
 
+  .data-container p {
+    display: flex;
+    align-items: center;
+  }
+
   .recent-data-container-text {
     display: block;
   }
@@ -190,7 +195,7 @@
 
   .main-result p {
     padding-left: 15px;
-    height: 15px;
+    height: 20px;
   }
 
   .result-body .key {
@@ -216,6 +221,7 @@
 
   .recent-transaction-data {
     width: 70%;
+    align-content: center;
   }
 
   .recent-block,
@@ -299,6 +305,10 @@
 
   b:hover {
     text-decoration: underline;
+    cursor: pointer;
+  }
+
+  .main-page-clickable:hover {
     cursor: pointer;
   }
 

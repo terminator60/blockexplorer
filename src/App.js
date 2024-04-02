@@ -1,6 +1,10 @@
 import { Alchemy, Network, Utils } from 'alchemy-sdk';
 import { useEffect, useState } from 'react';
 import './App.css';
+import LoadingAnimation from './LoadingAnimation';
+import BufferingAnimation from './BufferingAnimation';
+import OverlayLoadingAnimation from './OverlayLoadingAnimation';
+
 
 // Refer to the README doc for more information about using API
 // keys in client-side code. You should never do this in production
@@ -19,48 +23,68 @@ const settings = {
 const alchemy = new Alchemy(settings);
 
 function App() {
+  const tempArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const mainDashbpard = (<div className="recent-data">
     <div className='recent-blocks-data' >
       <div className='recent-blocks-data-header'>
         <img src={require('./images/blockchain.webp')} alt="block-icon" className="sub-logo"></img>
         <h3>Recent Blocks</h3>
       </div>
+      {tempArray.reverse().map(() => (
+        <div className='recent-block'>
+          <img src={require('./images/block.webp')} alt="block-icon" className="sub-logo"></img>
+          <p className='temp'><LoadingAnimation /></p>
+        </div>
+      ))}
     </div>
     <div className='recent-transactions-data' style={{ width: '65%' }}>
       <div className='recent-transactions-data-header'>
         <img src={require('./images/file.webp')} alt="block-icon" className="sub-logo"></img>
         <h3>Recent Transactions</h3>
       </div>
+      {tempArray.reverse().map(() => (
+        <div className='recent-transaction'>
+          <div className='recent-transaction-head'>
+            <img src={require('./images/list.webp')} alt="transaction-icon" className="sub-logo"></img>
+            <p className='temp'><LoadingAnimation /></p>
+          </div>
+        </div>
+      ))}
     </div>
     <div className='recent-additonal-data' style={{ width: '15%' }}>
       <div className='recent-data-container'>
         <img src={require('./images/label.webp')} alt="gas-icon" className="main-logo"></img>
         <div className='recent-data-container-text'>
           <p>Eth Price</p>
+          <p className='temp'><LoadingAnimation /></p>
         </div>
       </div>
       <div className='recent-data-container'>
         <img src={require('./images/pie-chart.webp')} alt="gas-icon" className="main-logo"></img>
         <div className='recent-data-container-text'>
           <p>Market Cap</p>
+          <p className='temp'><LoadingAnimation /></p>
         </div>
       </div>
       <div className='recent-data-container'>
         <img src={require('./images/stocks.webp')} alt="gas-icon" className="main-logo"></img>
         <div className='recent-data-container-text'>
           <p>Volume (24 Hr)</p>
+          <p className='temp'><LoadingAnimation /></p>
         </div>
       </div>
       <div className='recent-data-container'>
         <img src={require('./images/gas-logo.webp')} alt="gas-icon" className="main-logo"></img>
         <div className='recent-data-container-text'>
           <p>Gas</p>
+          <p className='temp'><LoadingAnimation /></p>
         </div>
       </div>
       <div className='recent-data-container'>
         <img src={require('./images/blocks.webp')} alt="block-icon" className="main-logo"></img>
         <div className='recent-data-container-text'>
           <p>Latest Block</p>
+          <p className='temp'><LoadingAnimation /></p>
           <p></p>
         </div>
       </div>
@@ -142,12 +166,14 @@ function App() {
   }
 
   function displayHome() {
-    setCounter(0)
+    setDivContent(<OverlayLoadingAnimation timeOut="2000" />);
+    setCounter(0);
   }
 
   const transactionClick = async (e) => {
     const trnxId = e.target.textContent;
     //console.log(trnxId);
+    setDivContent(<OverlayLoadingAnimation timeOut="2000" />);
     const transactionData = await alchemy.core.getTransaction(trnxId);
     getTransactionData(transactionData);
   };
@@ -155,6 +181,7 @@ function App() {
   const addressClick = async (e) => {
     const address = e.target.textContent;
     //console.log(address);
+    setDivContent(<OverlayLoadingAnimation timeOut="2000" />);
     getAddressData(address)
   };
 
@@ -278,6 +305,7 @@ function App() {
   }
 
   async function getBlockData(input) {
+    setDivContent(<OverlayLoadingAnimation timeOut="1500" />)
     let blockData;
     if (input.length === 66) {
       blockData = await alchemy.core.getBlock(input);
@@ -376,9 +404,10 @@ function App() {
     const table = document.getElementById('transactions-table');
     //console.log(table)
     if (!table) {
+      setTrnxContent(<OverlayLoadingAnimation timeOut="2000" />)
       const blockTrxData = await alchemy.core.getBlockWithTransactions(`0x${Number(blockId).toString(16)}`);
       const trxs = blockTrxData.transactions;
-      console.log(trxs)
+      //console.log(trxs)
       if (trxs.length) {
         setTrnxContent(<TransactionTableComponent data={trxs}></TransactionTableComponent>);
       }
@@ -626,16 +655,16 @@ function App() {
     <div className="header">
       <div className='site-header'>
         <img src={require('./images/eth-logo.webp')} alt="gas-icon" className="main-logo"></img>
-        <h1 onClick={displayHome}>ETH Block Explorer</h1>
+        <h1 className='main-page-clickable' onClick={displayHome}>ETH Block Explorer</h1>
       </div>
       <div className='latest-data-container'>
         <div className='data-container'>
           <img src={require('./images/gas-logo.webp')} alt="gas-icon" className="logo"></img>
-          <p>Gas - <b id='gasText' style={{ color: getGasColor(gasPrice) }}>{gasPrice} Gwei</b></p>
+          <p>Gas - {gasPrice ? (<b id='gasText' style={{ color: getGasColor(gasPrice) }}>{gasPrice} Gwei</b>) : <BufferingAnimation />}</p>
         </div>
         <div className='data-container'>
           <img src={require('./images/blocks.webp')} alt="block-icon" className="logo"></img>
-          <p>Latest Block - <b className='clickable' onClick={getBlock}>{blockNumber}</b></p>
+          <p>Latest Block - {blockNumber ? <b className='clickable' onClick={getBlock}>{blockNumber}</b> : <BufferingAnimation />}</p>
         </div>
       </div>
     </div>
